@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo</a>
+    <header class="header-fixo">
+        <div class="header-container">
+            <span class="logo" aria-label="Logo Biblioteca Escolar" tabindex="0">📚</span>
+            <h1 class="titulo-site" aria-label="Título principal da página" tabindex="0">Biblioteca Escolar</h1>
+            <form class="busca" role="search" aria-label="Buscar livros">
+                <input type="search" id="busca-input" placeholder="Buscar por título, autor..." aria-label="Buscar livros" />
+                <button type="submit" aria-label="Buscar">🔍</button>
+            </form>
+        </div>
+    </header>
+    <div class="layout">
+        <aside class="sidebar" aria-label="Filtros de livros">
+            <h2>Filtros</h2>
+            <form id="filtros-form">
+                <label for="genero">Gênero</label>
+                <select id="genero" name="genero">
+                    <option value="">Todos</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Poesia">Poesia</option>
+                </select>
+                <label for="ano">Ano</label>
+                <input type="number" id="ano" name="ano" min="1800" max="2025" placeholder="Ano" />
+                <label for="status">Status</label>
+                <select id="status" name="status">
+                    <option value="">Todos</option>
+                    <option value="disponivel">Disponível</option>
+                    <option value="emprestado">Emprestado</option>
+                </select>
+                <button type="submit">Filtrar</button>
+            </form>
+            <button id="novo-livro-btn" class="btn-acento" aria-label="Adicionar novo livro">+ Novo Livro</button>
+            <button id="sidebar-emprestimo-btn" class="btn-acento" aria-label="Acessar modal de empréstimo">Empréstimo</button>
+            <button id="sidebar-devolver-btn" class="btn-acento" aria-label="Acessar modal de devolução">Devolver</button>
+        </aside>
+        <main id="main-content" class="principal" tabindex="0">
+            <section id="livros" aria-label="Lista de livros">
+                <!-- Lista de livros será carregada aqui -->
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 1">
+                    <img src="./vol1.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 1" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 1</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2014</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 2">
+                    <img src="./vol2.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 2" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 2</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2014</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 3">
+                    <img src="./vol3.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 3" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 3</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2015</span>
+                    <span class="status emprestado">Emprestado</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Devolver</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 4">
+                    <img src="./vol4.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 4" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 4</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2015</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 5">
+                    <img src="./vol5.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 5" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 5</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2015</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 6">
+                    <img src="./vol6.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 6" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 6</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2015</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 7">
+                    <img src="./vol7.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 7" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 7</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2016</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 8">
+                    <img src="./vol8.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 8" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 8</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2016</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 9">
+                    <img src="./vol9.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 9" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 9</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2016</span>
+                    <span class="status emprestado">Emprestado</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Devolver</button>
+                    </div>
+                </div>
+                <div class="card" tabindex="0" aria-label="Mangá: Boku no Hero Academia Vol. 10">
+                    <img src="./vol10.jpg" alt="Capa do mangá Boku no Hero Academia Vol. 10" class="capa" style="width:auto;max-width:100%;height:auto;max-height:400px;display:block;margin:0 auto;" />
+                    <h2>Boku no Hero Academia Vol. 10</h2>
+                    <p>Kōhei Horikoshi</p>
+                    <span class="ano">2016</span>
+                    <span class="status">Disponível</span>
+                    <div class="acoes">
+                        <button class="btn-acento">Empréstimo</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal Novo Livro -->
+    <div id="modal-novo-livro" class="modal" aria-modal="true" aria-labelledby="modalNovoLivroTitulo" hidden>
+        <div class="modal-conteudo">
+            <h2 id="modalNovoLivroTitulo">Novo Livro</h2>
+            <form id="form-novo-livro">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" name="titulo" required />
+                <label for="autor">Autor</label>
+                <input type="text" id="autor" name="autor" required />
+                <label for="ano">Ano</label>
+                <input type="number" id="ano-livro" name="ano" min="1800" max="2025" required />
+                <label for="genero">Gênero</label>
+                <input type="text" id="genero-livro" name="genero" required />
+                <button type="submit" class="btn-acento">Salvar</button>
+                <button type="button" class="btn-cancelar" id="fechar-modal-novo">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Empréstimo/Devolução -->
+    <div id="modal-emprestimo" class="modal" aria-modal="true" aria-labelledby="modalEmprestimoTitulo" hidden>
+        <div class="modal-conteudo">
+            <h2 id="modalEmprestimoTitulo">Empréstimo/Devolução</h2>
+            <form id="form-emprestimo">
+                <input type="hidden" id="livro-id-emprestimo" name="livroId" />
+                <p id="info-livro"></p>
+                <button type="submit" class="btn-acento" id="btn-emprestar">Emprestar</button>
+                <button type="button" class="btn-acento" id="btn-devolver">Devolver</button>
+                <button type="button" class="btn-cancelar" id="fechar-modal-emprestimo">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+<!-- Removido style duplicado -->
