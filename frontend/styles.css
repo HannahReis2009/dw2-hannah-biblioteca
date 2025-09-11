@@ -1,7 +1,15 @@
+.sidebar-blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    transition: background 0.3s;
+    will-change: transform, bottom;
+    mix-blend-mode: lighten;
+}
 body {
     font-family: 'Inter', 'Roboto', Arial, sans-serif;
-    background: #F8FAFC;
-    color: #0F172A;
+    background: #537E72; /* William Hooker's Green */
+    color: #122B1D; /* Dark Jungle Green */
     margin: 0;
     min-height: 100vh;
 }
@@ -11,10 +19,12 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
-    background: #1E3A8A;
-    color: #fff;
+    background: linear-gradient(90deg, #122B1D 80%, #537E72 100%);
+    color: #9CC97F;
     z-index: 10;
-    box-shadow: 0 2px 8px rgba(30,58,138,0.08);
+    box-shadow: 0 4px 16px rgba(18,43,29,0.10);
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
 }
 .header-container {
     display: flex;
@@ -22,7 +32,10 @@ body {
     justify-content: space-between;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.5rem 1.5rem;
+    padding: 1rem 2rem;
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 4px 16px rgba(18,43,29,0.10);
+    background: rgba(18,43,29,0.97);
 }
 .logo {
     font-size: 2rem;
@@ -67,62 +80,97 @@ body {
     min-height: calc(100vh - 80px);
 }
 
+/* Sidebar visual anterior: gradiente escuro */
 .sidebar {
-    width: 240px;
-    background: #fff;
-    border-right: 1px solid #e5e7eb;
-    padding: 2rem 1rem 1rem 1rem;
-    box-shadow: 2px 0 8px rgba(30,58,138,0.03);
+    width: 280px;
+    min-width: 240px;
+    background: linear-gradient(160deg, rgba(18,43,29,0.92) 60%, rgba(83,126,114,0.85) 100%);
+    border-right: none;
+    padding: 3rem 2rem 2rem 2rem;
+    box-shadow: 0 8px 32px 0 rgba(18,43,29,0.18), 0 1.5px 8px 0 rgba(144,183,191,0.08);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2.5rem;
+    border-radius: 0 38px 38px 0;
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-top: 2.5px solid #537E72;
+    border-bottom: 2.5px solid #537E72;
+    transition: box-shadow 0.3s, background 0.3s;
+    position: relative;
+    overflow: hidden;
 }
+
 .sidebar h2 {
-    font-size: 1.1rem;
-    color: #1E3A8A;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #9CC97F;
+    margin-bottom: 2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 4px 16px rgba(144,183,191,0.18);
+    border-bottom: 2px solid #90B7BF;
+    padding-bottom: 0.7rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, rgba(156,201,127,0.12) 60%, rgba(144,183,191,0.10) 100%);
+    border-radius: 0 0 18px 18px;
+    box-shadow: 0 2px 8px rgba(18,43,29,0.06);
 }
 .sidebar label {
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
+    font-size: 1.05rem;
+    margin-top: 0.7rem;
+    color: #CDDECB;
+    letter-spacing: 0.7px;
+    font-weight: 500;
 }
 .sidebar input, .sidebar select {
     width: 100%;
-    padding: 0.4rem;
-    margin-bottom: 0.7rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
+    padding: 0.8rem 1.1rem;
+    margin-bottom: 1.2rem;
+    border-radius: 14px;
+    border: 1.5px solid #90B7BF;
+    font-size: 1.05rem;
+    background: rgba(205,222,203,0.92);
+    color: #122B1D;
+    box-shadow: 0 2px 8px rgba(144,183,191,0.13);
+    transition: border 0.2s, box-shadow 0.2s;
+}
+.sidebar input:focus, .sidebar select:focus {
+    border: 1.5px solid #9CC97F;
+    box-shadow: 0 4px 16px rgba(156,201,127,0.18);
+    outline: none;
 }
 .sidebar button, .btn-acento {
-    background: #F59E0B;
-    color: #0F172A;
+    background: linear-gradient(90deg, #9CC97F 60%, #90B7BF 100%);
+    color: #122B1D;
     border: none;
-    border-radius: 4px;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    font-weight: 600;
+    border-radius: 14px;
+    padding: 0.9rem 1.4rem;
+    font-size: 1.08rem;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 0.5rem;
-    transition: background 0.2s, color 0.2s;
+    margin-top: 0.7rem;
+    box-shadow: 0 2px 12px rgba(83,126,114,0.13);
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
 }
 .sidebar button:hover, .btn-acento:hover, .sidebar button:focus, .btn-acento:focus {
-    background: #10B981;
-    color: #fff;
+    background: linear-gradient(90deg, #537E72 60%, #9CC97F 100%);
+    color: #CDDECB;
+    box-shadow: 0 8px 32px rgba(18,43,29,0.18);
+    transform: translateY(-2px) scale(1.03);
 }
 .btn-cancelar {
-    background: #e5e7eb;
-    color: #1E3A8A;
+    background: #90B7BF;
+    color: #122B1D;
     margin-left: 0.5rem;
+    border-radius: 8px;
 }
 .btn-cancelar:hover, .btn-cancelar:focus {
-    background: #F59E0B;
-    color: #0F172A;
+    background: #537E72;
+    color: #9CC97F;
 }
 
 .principal {
     flex: 1;
-    padding: 2rem 2vw;
+    padding: 2.5rem 3vw;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -139,21 +187,26 @@ body {
 }
 
 .card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 16px rgba(30,58,138,0.10);
-    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    background: #CDDECB;
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(18,43,29,0.10);
+    padding: 1.7rem 1.7rem 2.2rem 1.7rem;
     min-height: 260px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border-left: 8px solid #F59E0B;
-    transition: box-shadow 0.2s, border-color 0.2s;
+    border-left: 8px solid #90B7BF;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
     position: relative;
 }
+.card:hover {
+    box-shadow: 0 8px 32px rgba(18,43,29,0.18);
+    border-left: 8px solid #9CC97F;
+    transform: translateY(-4px) scale(1.02);
+}
 .card:focus {
-    outline: 3px solid #10B981;
-    border-color: #10B981;
+    outline: 3px solid #90B7BF;
+    border-color: #9CC97F;
 }
 .card .capa {
     width: 100%;
@@ -161,7 +214,7 @@ body {
     object-fit: contain;
     border-radius: 6px;
     margin-bottom: 1rem;
-    background: #e5e7eb;
+    background: #90B7BF; /* Pewter Blue */
 }
 
 .imagem-container {
@@ -174,28 +227,28 @@ body {
     background: #fff;
 }
 .card h2 {
-    color: #1E3A8A;
+    color: #537E72; /* William Hooker's Green */
     font-size: 1.25rem;
     margin: 0 0 0.5rem 0;
     font-family: 'Inter', 'Roboto', Arial, sans-serif;
 }
 .card p {
-    color: #0F172A;
+    color: #122B1D; /* Dark Jungle Green */
     margin: 0 0 0.3rem 0;
     font-size: 1.08rem;
 }
 .card .ano {
     font-size: 1rem;
-    color: #64748B;
+    color: #537E72; /* William Hooker's Green */
 }
 .card .status {
     font-size: 1rem;
     font-weight: 600;
-    color: #10B981;
+    color: #9CC97F; /* Pistachio */
     margin-top: 0.3rem;
 }
 .card .status.emprestado {
-    color: #F59E0B;
+    color: #537E72; /* William Hooker's Green */
 }
 .card .acoes {
     position: absolute;
@@ -216,7 +269,7 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(15,23,42,0.25);
+    background: rgba(18,43,29,0.25); /* Dark Jungle Green, translúcido */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -226,15 +279,15 @@ body {
     display: none;
 }
 .modal-conteudo {
-    background: #fff;
+    background: #CDDECB; /* Light Gray */
     border-radius: 8px;
     padding: 2rem 2.5rem 1.5rem 2.5rem;
-    box-shadow: 0 4px 24px rgba(30,58,138,0.12);
+    box-shadow: 0 4px 24px rgba(83,126,114,0.12);
     min-width: 320px;
     max-width: 95vw;
 }
 .modal-conteudo h2 {
-    color: #1E3A8A;
+    color: #537E72; /* William Hooker's Green */
     margin-top: 0;
 }
 .modal-conteudo form {
@@ -248,6 +301,6 @@ body {
 .modal-conteudo input {
     padding: 0.5rem;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid #90B7BF; /* Pewter Blue */
     font-size: 1rem;
 }

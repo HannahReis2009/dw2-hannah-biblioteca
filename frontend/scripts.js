@@ -50,7 +50,6 @@ async function carregarLivros() {
 document.addEventListener('DOMContentLoaded', () => {
     carregarLivros();
 });
-});
 
 // Carregamento inicial
 document.addEventListener('DOMContentLoaded', () => {
@@ -245,4 +244,44 @@ function exportarJSON() {
 
     window.location.href = `${API_URL}/export/json?${params}`;
 }
+
+// Animação de fundo dinâmica para a sidebar
+// Bolhas orgânicas que sobem lentamente e mudam de tamanho/opacidade
+
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('.sidebar-bg-anim');
+    if (!container) return;
+
+    const colors = ['#537E72', '#9CC97F', '#90B7BF', '#CDDECB'];
+    const numBlobs = 7;
+    const blobs = [];
+
+    for (let i = 0; i < numBlobs; i++) {
+        const blob = document.createElement('div');
+        blob.className = 'sidebar-blob';
+        const size = 40 + Math.random() * 60;
+        blob.style.width = `${size}px`;
+        blob.style.height = `${size}px`;
+        blob.style.left = `${Math.random() * 80}%`;
+        blob.style.bottom = `${Math.random() * 60}%`;
+        blob.style.background = colors[Math.floor(Math.random() * colors.length)];
+        blob.style.opacity = 0.13 + Math.random() * 0.18;
+        blob.style.filter = 'blur(2px)';
+        container.appendChild(blob);
+        blobs.push({el: blob, speed: 0.2 + Math.random() * 0.3, base: size});
+    }
+
+    function animate() {
+        blobs.forEach((b, i) => {
+            let top = parseFloat(b.el.style.bottom);
+            top += b.speed * (0.5 + Math.sin(Date.now() / (2000 + i * 500)));
+            if (top > 100) top = -10;
+            b.el.style.bottom = `${top}%`;
+            // Mudança de tamanho orgânica
+            const scale = 0.9 + 0.2 * Math.sin(Date.now() / (1200 + i * 300));
+            b.el.style.transform = `scale(${scale})`;
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
 });
