@@ -1,15 +1,18 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from models import Livro
 from database import get_db, engine
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
+from pydantic import BaseModel
+from datetime import datetime
 
 class LivroCreate(BaseModel):
     titulo: str
     autor: str
     ano: Optional[int] = None
     genero: Optional[str] = None
+    isbn: Optional[str] = None
 
 app = FastAPI()
 
@@ -30,10 +33,9 @@ def listar_livros(
 ):
     db = next(get_db())
     query = db.query(Livro)
-    
     if busca:
         query = query.filter(
-            (Livro.titulo.ilike(f"%{busca}%")) | 
+            (Livro.titulo.ilike(f"%{busca}%")) |
             (Livro.autor.ilike(f"%{busca}%"))
         )
     if genero:
@@ -42,7 +44,6 @@ def listar_livros(
         query = query.filter(Livro.ano == ano)
     if status:
         query = query.filter(Livro.status == status)
-        
     livros = query.all()
     return [livro.to_dict() for livro in livros]
 
@@ -54,7 +55,9 @@ def criar_livro(livro: LivroCreate):
         autor=livro.autor,
         ano=livro.ano,
         genero=livro.genero,
-        status='disponivel'
+        isbn=livro.isbn,
+        status='disponivel',
+        data_emprestimo=None
     )
     db.add(novo_livro)
     db.commit()
@@ -67,12 +70,11 @@ def atualizar_livro(livro_id: int, livro: LivroCreate):
     db_livro = db.query(Livro).filter(Livro.id == livro_id).first()
     if not db_livro:
         raise HTTPException(status_code=404, detail="Livro não encontrado")
-    
     db_livro.titulo = livro.titulo
     db_livro.autor = livro.autor
     db_livro.ano = livro.ano
     db_livro.genero = livro.genero
-    
+    db_livro.isbn = livro.isbn
     db.commit()
     db.refresh(db_livro)
     return db_livro.to_dict()
@@ -83,20 +85,36 @@ def deletar_livro(livro_id: int):
     livro = db.query(Livro).filter(Livro.id == livro_id).first()
     if not livro:
         raise HTTPException(status_code=404, detail="Livro não encontrado")
-    
     db.delete(livro)
     db.commit()
     return {"message": "Livro deletado com sucesso"}
 
-@app.put("/livros/{livro_id}/emprestimo")
-def alterar_status_livro(livro_id: int, status: str):
+@app.post("/livros/{livro_id}/emprestar")
+def emprestar_livro(livro_id: int):
     db = next(get_db())
     livro = db.query(Livro).filter(Livro.id == livro_id).first()
     if not livro:
         raise HTTPException(status_code=404, detail="Livro não encontrado")
-    
-    livro.status = status
+    if livro.status == "emprestado":
+        raise HTTPException(status_code=400, detail="Livro já está emprestado")
+    livro.status = "emprestado"
+    livro.data_emprestimo = datetime.now().isoformat()
     db.commit()
+    db.refresh(livro)
+    return livro.to_dict()
+
+@app.post("/livros/{livro_id}/devolver")
+def devolver_livro(livro_id: int):
+    db = next(get_db())
+    livro = db.query(Livro).filter(Livro.id == livro_id).first()
+    if not livro:
+        raise HTTPException(status_code=404, detail="Livro não encontrado")
+    if livro.status == "disponivel":
+        raise HTTPException(status_code=400, detail="Livro já está disponível")
+    livro.status = "disponivel"
+    livro.data_emprestimo = None
+    db.commit()
+    db.refresh(livro)
     return livro.to_dict()
 
 @app.get("/export/csv")
