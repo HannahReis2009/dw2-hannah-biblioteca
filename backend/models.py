@@ -13,3 +13,4 @@ class Livro(Base):
     isbn = Column(String, nullable=True)
     status = Column(String, nullable=False, default='disponivel')
     data_emprestimo = Column(String, nullable=True)
+    sinopse = Column(String, nullable=True)

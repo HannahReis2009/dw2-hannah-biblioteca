@@ -1,5 +1,7 @@
 'use strict';
 
+const API_URL = 'http://localhost:8000';
+
 /**
  * Função para carregar os livros do servidor e exibi-los na interface
  */
@@ -284,4 +286,34 @@ document.addEventListener('DOMContentLoaded', function () {
         requestAnimationFrame(animate);
     }
     animate();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.btn-acento').forEach(btn => {
+    if (btn.textContent.trim() === 'Empréstimo') {
+            btn.onclick = function(e) {
+                e.preventDefault();
+                // Encontra o card do livro
+                const card = btn.closest('.card');
+                let livroId = null;
+                // Tenta obter o id do livro pelo título
+                const titulo = card.querySelector('h2')?.textContent;
+                // Extrai o número do volume do título
+                const match = titulo.match(/Vol\.\s*(\d+)/);
+                if (match) {
+                    livroId = parseInt(match[1]);
+                }
+                if (livroId) {
+                    localStorage.setItem('livroEmprestimoId', livroId);
+                }
+                window.location.href = 'emprestimos.html';
+            };
+    }
+    if (btn.textContent.trim() === 'Devolver') {
+      btn.onclick = function(e) {
+        e.preventDefault();
+        window.location.href = 'devolucoes.html';
+      };
+    }
+  });
 });

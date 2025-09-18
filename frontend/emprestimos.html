@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empréstimos - Biblioteca</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header-fixo">
+        <div class="header-container">
+            <div class="logo" aria-label="Logo Biblioteca Escolar" tabindex="0">
+                <svg width="40" height="40" viewBox="0 0 40 40">
+                    <path class="logo-path" d="M10,8 L30,8 C31,8 32,9 32,10 L32,30 C32,31 31,32 30,32 L10,32 C9,32 8,31 8,30 L8,10 C8,9 9,8 10,8 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path class="logo-path" d="M12,12 L28,12 M12,16 L28,16 M12,20 L28,20 M12,24 L28,24 M12,28 L28,28" stroke="currentColor" stroke-width="2"/>
+                </svg>
+            </div>
+            <h1 class="titulo-site">
+                <span data-text="Empréstimos">Empréstimos</span>
+            </h1>
+        </div>
+    </header>
+    <div class="layout">
+        <main id="main-content" class="principal" tabindex="0">
+            <section id="livros-emprestimo" aria-label="Lista de livros para empréstimo">
+                <!-- Os dados dos livros serão carregados aqui via JS -->
+            </section>
+        </main>
+    </div>
+    <script src="emprestimos.js"></script>
+</body>
+</html>

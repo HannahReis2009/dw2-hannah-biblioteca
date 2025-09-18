@@ -13,6 +13,7 @@ class LivroCreate(BaseModel):
     ano: Optional[int] = None
     genero: Optional[str] = None
     isbn: Optional[str] = None
+    sinopse: Optional[str] = None
 
 app = FastAPI()
 
@@ -57,7 +58,8 @@ def criar_livro(livro: LivroCreate):
         genero=livro.genero,
         isbn=livro.isbn,
         status='disponivel',
-        data_emprestimo=None
+        data_emprestimo=None,
+        sinopse=livro.sinopse
     )
     db.add(novo_livro)
     db.commit()
@@ -75,6 +77,7 @@ def atualizar_livro(livro_id: int, livro: LivroCreate):
     db_livro.ano = livro.ano
     db_livro.genero = livro.genero
     db_livro.isbn = livro.isbn
+    db_livro.sinopse = livro.sinopse
     db.commit()
     db.refresh(db_livro)
     return db_livro.to_dict()
